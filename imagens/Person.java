@@ -1,16 +1,18 @@
 package imagens;
 
 import Game.Game;
+import imagens.engine.SpriteAnimado;
+
 import java.awt.image.BufferedImage;
 
 public class Person extends SpriteAnimado{
     // ATRIBUTOS -----------------------------------------------------------
     private static final int linhas=1;
     private static final int colunas=8;
-    private static final int larguraQuadro=22;
-    private static final int alturaQuadro=34;
+    public static final int larguraQuadro=22;
+    public static final int alturaQuadro=34;
     private static final int duracaoQuadro=80;
-    private static BufferedImage sprite = Game.recursos.spritePerson;
+    private static final BufferedImage sprite = Game.recursos.spritePerson;
 
     // CONSTRUTOR ----------------------------------------------------------
     public Person() {

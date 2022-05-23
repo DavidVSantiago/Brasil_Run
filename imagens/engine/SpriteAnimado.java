@@ -1,4 +1,4 @@
-package imagens;
+package imagens.engine;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -35,18 +35,19 @@ public abstract class SpriteAnimado extends Objeto{
 
     }
     @Override
-    public void update(long tempoDelta) {
+    public void update(double tempoDelta) {
         super.update(tempoDelta); // atualiza a posição e caixa de colisão
         mudarQuadro(tempoDelta);
 
     }
     @Override
     public void render(Graphics2D g2d) {
-        g2d.drawImage(obterQuadroAtual(), posX, posY, null);
+        g2d.drawImage(obterQuadroAtual(), (int)posX, (int)posY, null);
     }
     // MÉTODOS -------------------------------------------------------------
-    private void mudarQuadro(long tempoDelta){
-        tempoAcumulado += (tempoDelta*(1e-6));
+    private void mudarQuadro(double tempoDelta){
+        tempoAcumulado += tempoDelta*(1e-6);
+        System.out.println("tempo acumulado: "+tempoAcumulado);
         if(tempoAcumulado >= duracaoQuadro){
             quadroAtual++;
             if(quadroAtual>=totalQuadros) quadroAtual = 0;

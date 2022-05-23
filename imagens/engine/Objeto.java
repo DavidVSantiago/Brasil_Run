@@ -1,21 +1,21 @@
-package imagens;
+package imagens.engine;
 
 import java.awt.Graphics2D;
 
-public abstract class Objeto {
+public abstract class Objeto implements Elemento {
     // ATRIBUTOS -----------------------------------------------------------
-    public int posX, posY, velX, velY;
-    public int direita, esquerda, cima, baixo; // caixa de colisão 
+    public double posX, posY, velX, velY;
+    public double direita, esquerda, cima, baixo; // caixa de colisão 
 
     // CONSTRUTOR ----------------------------------------------------------
     public Objeto(){}
 
     // MÉTODOS GAMELOOP ----------------------------------------------------
-    public abstract void handlerEvents();
 
-	public void update(long tempoDelta) {
+	public void update(double tempoDelta) {
         // atualiza posição
-		posX +=(velX*tempoDelta);
+        tempoDelta*=(6e-8); // amenização do tempo delta
+       	posX +=(velX*tempoDelta);
         posY +=(velY*tempoDelta);
         // atualiza caixa de colisão
         direita+=(velX*tempoDelta);
@@ -23,8 +23,6 @@ public abstract class Objeto {
         cima+=(velY*tempoDelta);
         baixo+=(velY*tempoDelta);
 	}
-
-	public abstract void render(Graphics2D g2d);
 
     // MÉTODOS -------------------------------------------------------------
     public boolean intersede(Objeto o){
